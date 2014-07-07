@@ -14,27 +14,21 @@ static NSString * const BaseURLString = @"http://api.tumblr.com/v2/blog";
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    _statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
-    
-    // The text that will be shown in the menu bar
-    _statusItem.title = @"";
-    
-    // The image that will be shown in the menu bar, a 16x16 black png works best
-    _statusItem.image = [NSImage imageNamed:@"hang-icon"];
-    
-    // The highlighted image, use a white version of the normal image
-    _statusItem.alternateImage = [NSImage imageNamed:@"hang-icon-alt"];
-    
-    // The image gets a blue background when the item is selected
-    _statusItem.highlightMode = YES;
-    
     self.sites = @[@"littlevisuals.co", @"nos.twnsnd.co", @"unsplash.com", @"getrefe.tumblr.com"];
     self.apiKey = @"fuiKNFp9vQFvjLNvx4sUwti4Yb5yGutBN4Xh10LXZhhRKjWlV4";
     self.sitesCount = [self.sites count];
     self.sitesDone = 0;
     
+    _statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
+    _statusItem.title = @"";
+    _statusItem.image = [NSImage imageNamed:@"hang-icon"];
+    _statusItem.alternateImage = [NSImage imageNamed:@"hang-icon-alt"];
+    _statusItem.highlightMode = YES;
+    
     [self setupPath];
     [self setupMenu];
+    [self setTimer:3600];
+    [self start];
 }
 
 - (void)setupPath
@@ -57,21 +51,40 @@ static NSString * const BaseURLString = @"http://api.tumblr.com/v2/blog";
 - (void)setupMenu
 {
     NSMenu *menu = [[NSMenu alloc] init];
-    [menu addItemWithTitle:@"Refresh" action:@selector(refresh:) keyEquivalent:@""];
+    [menu addItemWithTitle:@"Refresh" action:@selector(refresh) keyEquivalent:@""];
     [menu addItem:[NSMenuItem separatorItem]]; // A thin grey line
     [menu addItemWithTitle:@"Quit" action:@selector(terminate:) keyEquivalent:@""];
     
     _statusItem.menu = menu;
 }
 
-- (void)refresh:(id)sender
+- (void)setTimer:(int)seconds
 {
-    self.statusItem.image = [NSImage imageNamed:@"hang-icon-loading"];
+    [NSTimer scheduledTimerWithTimeInterval:seconds
+                                     target:self
+                                   selector:@selector(getApiFeeds)
+                                   userInfo:nil
+                                    repeats:YES];
+}
+
+- (void)start
+{
+    [NSTimer scheduledTimerWithTimeInterval:5
+                                     target:self
+                                   selector:@selector(getApiFeeds)
+                                   userInfo:nil
+                                    repeats:NO];
+}
+
+- (void)refresh
+{
     [self getApiFeeds];
 }
 
 - (void)getApiFeeds
 {
+    self.statusItem.image = [NSImage imageNamed:@"hang-icon-loading"];
+    
     for (NSString *site in self.sites)
     {
         NSString *apiUrl = [NSString stringWithFormat:@"%@/%@/posts?api_key=%@", BaseURLString, site, self.apiKey];
@@ -165,9 +178,9 @@ static NSString * const BaseURLString = @"http://api.tumblr.com/v2/blog";
 - (void)notify
 {
     NSUserNotification *notification = [[NSUserNotification alloc] init];
-    [notification setTitle:@"Refreshed"];
-    [notification setInformativeText:@"Hung new wallpaper"];
-    [notification setDeliveryDate:[NSDate dateWithTimeInterval:1 sinceDate:[NSDate date]]];
+    [notification setTitle:@"Hang"];
+    [notification setInformativeText:@"Enjoy your new wallpaper."];
+    [notification setDeliveryDate:[NSDate dateWithTimeInterval:5 sinceDate:[NSDate date]]];
     [notification setSoundName:NSUserNotificationDefaultSoundName];
     NSUserNotificationCenter *center = [NSUserNotificationCenter defaultUserNotificationCenter];
     [center scheduleNotification:notification];

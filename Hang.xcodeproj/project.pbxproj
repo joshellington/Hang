@@ -18,9 +18,17 @@
 		032E27FE196A163600885FE4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 032E27DD196A163500885FE4 /* Cocoa.framework */; };
 		032E2806196A163600885FE4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 032E2804196A163600885FE4 /* InfoPlist.strings */; };
 		032E2808196A163600885FE4 /* HangTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 032E2807196A163600885FE4 /* HangTests.m */; };
-		032E2813196A176500885FE4 /* hang-icon-alt.png in Resources */ = {isa = PBXBuildFile; fileRef = 032E2811196A176500885FE4 /* hang-icon-alt.png */; };
-		032E2814196A176500885FE4 /* hang-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 032E2812196A176500885FE4 /* hang-icon.png */; };
-		032E281B196A4DB400885FE4 /* hang-icon-loading.png in Resources */ = {isa = PBXBuildFile; fileRef = 032E281A196A4DB400885FE4 /* hang-icon-loading.png */; };
+		032E282E196A500700885FE4 /* 16x16.png in Resources */ = {isa = PBXBuildFile; fileRef = 032E2826196A500700885FE4 /* 16x16.png */; };
+		032E282F196A500700885FE4 /* 24x24.png in Resources */ = {isa = PBXBuildFile; fileRef = 032E2827196A500700885FE4 /* 24x24.png */; };
+		032E2830196A500700885FE4 /* 32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = 032E2828196A500700885FE4 /* 32x32.png */; };
+		032E2831196A500700885FE4 /* 48x48.png in Resources */ = {isa = PBXBuildFile; fileRef = 032E2829196A500700885FE4 /* 48x48.png */; };
+		032E2832196A500700885FE4 /* 64x64.png in Resources */ = {isa = PBXBuildFile; fileRef = 032E282A196A500700885FE4 /* 64x64.png */; };
+		032E2833196A500700885FE4 /* 96x96.png in Resources */ = {isa = PBXBuildFile; fileRef = 032E282B196A500700885FE4 /* 96x96.png */; };
+		032E2834196A500700885FE4 /* 128x128.png in Resources */ = {isa = PBXBuildFile; fileRef = 032E282C196A500700885FE4 /* 128x128.png */; };
+		032E2835196A500700885FE4 /* 256x256.png in Resources */ = {isa = PBXBuildFile; fileRef = 032E282D196A500700885FE4 /* 256x256.png */; };
+		032E2839196A503600885FE4 /* hang-icon-loading.png in Resources */ = {isa = PBXBuildFile; fileRef = 032E2836196A503600885FE4 /* hang-icon-loading.png */; };
+		032E283A196A503600885FE4 /* hang-icon-alt.png in Resources */ = {isa = PBXBuildFile; fileRef = 032E2837196A503600885FE4 /* hang-icon-alt.png */; };
+		032E283B196A503600885FE4 /* hang-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 032E2838196A503600885FE4 /* hang-icon.png */; };
 		E262E4D358064F5DB7E118E5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F3FD1563434140A0F04295 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -54,9 +62,17 @@
 		032E2803196A163600885FE4 /* HangTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HangTests-Info.plist"; sourceTree = "<group>"; };
 		032E2805196A163600885FE4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		032E2807196A163600885FE4 /* HangTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HangTests.m; sourceTree = "<group>"; };
-		032E2811196A176500885FE4 /* hang-icon-alt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "hang-icon-alt.png"; path = "../../../../Desktop/hang-icon-alt.png"; sourceTree = "<group>"; };
-		032E2812196A176500885FE4 /* hang-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "hang-icon.png"; path = "../../../../Desktop/hang-icon.png"; sourceTree = "<group>"; };
-		032E281A196A4DB400885FE4 /* hang-icon-loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "hang-icon-loading.png"; path = "../../../../Desktop/hang-icon-loading.png"; sourceTree = "<group>"; };
+		032E2826196A500700885FE4 /* 16x16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 16x16.png; sourceTree = "<group>"; };
+		032E2827196A500700885FE4 /* 24x24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 24x24.png; sourceTree = "<group>"; };
+		032E2828196A500700885FE4 /* 32x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 32x32.png; sourceTree = "<group>"; };
+		032E2829196A500700885FE4 /* 48x48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 48x48.png; sourceTree = "<group>"; };
+		032E282A196A500700885FE4 /* 64x64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 64x64.png; sourceTree = "<group>"; };
+		032E282B196A500700885FE4 /* 96x96.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 96x96.png; sourceTree = "<group>"; };
+		032E282C196A500700885FE4 /* 128x128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 128x128.png; sourceTree = "<group>"; };
+		032E282D196A500700885FE4 /* 256x256.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 256x256.png; sourceTree = "<group>"; };
+		032E2836196A503600885FE4 /* hang-icon-loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hang-icon-loading.png"; sourceTree = "<group>"; };
+		032E2837196A503600885FE4 /* hang-icon-alt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hang-icon-alt.png"; sourceTree = "<group>"; };
+		032E2838196A503600885FE4 /* hang-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hang-icon.png"; sourceTree = "<group>"; };
 		80B7E321FF40464DA02502AE /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		D1F3FD1563434140A0F04295 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -127,12 +143,20 @@
 		032E27E3196A163500885FE4 /* Hang */ = {
 			isa = PBXGroup;
 			children = (
+				032E2836196A503600885FE4 /* hang-icon-loading.png */,
+				032E2837196A503600885FE4 /* hang-icon-alt.png */,
+				032E2838196A503600885FE4 /* hang-icon.png */,
 				032E27EF196A163500885FE4 /* HangAppDelegate.h */,
 				032E27F0196A163500885FE4 /* HangAppDelegate.m */,
-				032E281A196A4DB400885FE4 /* hang-icon-loading.png */,
-				032E2811196A176500885FE4 /* hang-icon-alt.png */,
-				032E2812196A176500885FE4 /* hang-icon.png */,
 				032E27F2196A163500885FE4 /* MainMenu.xib */,
+				032E2826196A500700885FE4 /* 16x16.png */,
+				032E2827196A500700885FE4 /* 24x24.png */,
+				032E2828196A500700885FE4 /* 32x32.png */,
+				032E2829196A500700885FE4 /* 48x48.png */,
+				032E282A196A500700885FE4 /* 64x64.png */,
+				032E282B196A500700885FE4 /* 96x96.png */,
+				032E282C196A500700885FE4 /* 128x128.png */,
+				032E282D196A500700885FE4 /* 256x256.png */,
 				032E27F5196A163500885FE4 /* Images.xcassets */,
 				032E27E4196A163500885FE4 /* Supporting Files */,
 			);
@@ -248,12 +272,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				032E2813196A176500885FE4 /* hang-icon-alt.png in Resources */,
 				032E27E8196A163500885FE4 /* InfoPlist.strings in Resources */,
 				032E27F6196A163500885FE4 /* Images.xcassets in Resources */,
+				032E2839196A503600885FE4 /* hang-icon-loading.png in Resources */,
+				032E2830196A500700885FE4 /* 32x32.png in Resources */,
+				032E2834196A500700885FE4 /* 128x128.png in Resources */,
+				032E2835196A500700885FE4 /* 256x256.png in Resources */,
 				032E27EE196A163500885FE4 /* Credits.rtf in Resources */,
-				032E281B196A4DB400885FE4 /* hang-icon-loading.png in Resources */,
-				032E2814196A176500885FE4 /* hang-icon.png in Resources */,
+				032E2831196A500700885FE4 /* 48x48.png in Resources */,
+				032E283A196A503600885FE4 /* hang-icon-alt.png in Resources */,
+				032E282E196A500700885FE4 /* 16x16.png in Resources */,
+				032E282F196A500700885FE4 /* 24x24.png in Resources */,
+				032E2832196A500700885FE4 /* 64x64.png in Resources */,
+				032E2833196A500700885FE4 /* 96x96.png in Resources */,
+				032E283B196A503600885FE4 /* hang-icon.png in Resources */,
 				032E27F4196A163500885FE4 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -439,7 +471,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 80B7E321FF40464DA02502AE /* Pods.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Hang/Hang-Prefix.pch";
@@ -453,7 +485,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 80B7E321FF40464DA02502AE /* Pods.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Hang/Hang-Prefix.pch";
