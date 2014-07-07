@@ -29,6 +29,7 @@
 		032E2839196A503600885FE4 /* hang-icon-loading.png in Resources */ = {isa = PBXBuildFile; fileRef = 032E2836196A503600885FE4 /* hang-icon-loading.png */; };
 		032E283A196A503600885FE4 /* hang-icon-alt.png in Resources */ = {isa = PBXBuildFile; fileRef = 032E2837196A503600885FE4 /* hang-icon-alt.png */; };
 		032E283B196A503600885FE4 /* hang-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 032E2838196A503600885FE4 /* hang-icon.png */; };
+		032E283D196A567B00885FE4 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 032E283C196A567B00885FE4 /* README.md */; };
 		E262E4D358064F5DB7E118E5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F3FD1563434140A0F04295 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +74,7 @@
 		032E2836196A503600885FE4 /* hang-icon-loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hang-icon-loading.png"; sourceTree = "<group>"; };
 		032E2837196A503600885FE4 /* hang-icon-alt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hang-icon-alt.png"; sourceTree = "<group>"; };
 		032E2838196A503600885FE4 /* hang-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hang-icon.png"; sourceTree = "<group>"; };
+		032E283C196A567B00885FE4 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		80B7E321FF40464DA02502AE /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		D1F3FD1563434140A0F04295 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -148,6 +150,7 @@
 				032E2838196A503600885FE4 /* hang-icon.png */,
 				032E27EF196A163500885FE4 /* HangAppDelegate.h */,
 				032E27F0196A163500885FE4 /* HangAppDelegate.m */,
+				032E283C196A567B00885FE4 /* README.md */,
 				032E27F2196A163500885FE4 /* MainMenu.xib */,
 				032E2826196A500700885FE4 /* 16x16.png */,
 				032E2827196A500700885FE4 /* 24x24.png */,
@@ -278,6 +281,7 @@
 				032E2830196A500700885FE4 /* 32x32.png in Resources */,
 				032E2834196A500700885FE4 /* 128x128.png in Resources */,
 				032E2835196A500700885FE4 /* 256x256.png in Resources */,
+				032E283D196A567B00885FE4 /* README.md in Resources */,
 				032E27EE196A163500885FE4 /* Credits.rtf in Resources */,
 				032E2831196A500700885FE4 /* 48x48.png in Resources */,
 				032E283A196A503600885FE4 /* hang-icon-alt.png in Resources */,
