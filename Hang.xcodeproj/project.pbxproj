@@ -18,6 +18,8 @@
 		032E27FE196A163600885FE4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 032E27DD196A163500885FE4 /* Cocoa.framework */; };
 		032E2806196A163600885FE4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 032E2804196A163600885FE4 /* InfoPlist.strings */; };
 		032E2808196A163600885FE4 /* HangTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 032E2807196A163600885FE4 /* HangTests.m */; };
+		032E2813196A176500885FE4 /* hang-icon-alt.png in Resources */ = {isa = PBXBuildFile; fileRef = 032E2811196A176500885FE4 /* hang-icon-alt.png */; };
+		032E2814196A176500885FE4 /* hang-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 032E2812196A176500885FE4 /* hang-icon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +52,8 @@
 		032E2803196A163600885FE4 /* HangTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HangTests-Info.plist"; sourceTree = "<group>"; };
 		032E2805196A163600885FE4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		032E2807196A163600885FE4 /* HangTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HangTests.m; sourceTree = "<group>"; };
+		032E2811196A176500885FE4 /* hang-icon-alt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "hang-icon-alt.png"; path = "../../../../Desktop/hang-icon-alt.png"; sourceTree = "<group>"; };
+		032E2812196A176500885FE4 /* hang-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "hang-icon.png"; path = "../../../../Desktop/hang-icon.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +121,8 @@
 			children = (
 				032E27EF196A163500885FE4 /* HangAppDelegate.h */,
 				032E27F0196A163500885FE4 /* HangAppDelegate.m */,
+				032E2811196A176500885FE4 /* hang-icon-alt.png */,
+				032E2812196A176500885FE4 /* hang-icon.png */,
 				032E27F2196A163500885FE4 /* MainMenu.xib */,
 				032E27F5196A163500885FE4 /* Images.xcassets */,
 				032E27E4196A163500885FE4 /* Supporting Files */,
@@ -231,9 +237,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				032E2813196A176500885FE4 /* hang-icon-alt.png in Resources */,
 				032E27E8196A163500885FE4 /* InfoPlist.strings in Resources */,
 				032E27F6196A163500885FE4 /* Images.xcassets in Resources */,
 				032E27EE196A163500885FE4 /* Credits.rtf in Resources */,
+				032E2814196A176500885FE4 /* hang-icon.png in Resources */,
 				032E27F4196A163500885FE4 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -385,7 +393,7 @@
 		032E280C196A163600885FE4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Hang/Hang-Prefix.pch";
@@ -398,7 +406,7 @@
 		032E280D196A163600885FE4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Hang/Hang-Prefix.pch";

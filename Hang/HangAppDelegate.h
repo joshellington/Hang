@@ -10,6 +10,7 @@
 
 @interface HangAppDelegate : NSObject <NSApplicationDelegate>
 
-@property (assign) IBOutlet NSWindow *window;
+//@property (assign) IBOutlet NSWindow *window;
+@property (strong, nonatomic) NSStatusItem *statusItem;
 
 @end
