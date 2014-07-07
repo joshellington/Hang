@@ -13,6 +13,11 @@
 //@property (assign) IBOutlet NSWindow *window;
 @property (strong, nonatomic) NSStatusItem *statusItem;
 @property (strong, nonatomic) NSDictionary *apiResponse;
+@property (strong, nonatomic) NSMutableArray *allResponses;
 @property (strong, nonatomic) NSString *path;
+@property (strong, nonatomic) NSArray *sites;
+@property (strong, nonatomic) NSString *apiKey;
+@property (nonatomic, assign) NSInteger sitesCount;
+@property (nonatomic, assign) NSInteger sitesDone;
 
 @end

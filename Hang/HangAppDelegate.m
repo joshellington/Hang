@@ -8,7 +8,7 @@
 
 #import "HangAppDelegate.h"
 
-static NSString * const BaseURLString = @"http://api.tumblr.com/v2/blog/";
+static NSString * const BaseURLString = @"http://api.tumblr.com/v2/blog";
 
 @implementation HangAppDelegate
 
@@ -27,6 +27,11 @@ static NSString * const BaseURLString = @"http://api.tumblr.com/v2/blog/";
     
     // The image gets a blue background when the item is selected
     _statusItem.highlightMode = YES;
+    
+    self.sites = @[@"littlevisuals.co", @"nos.twnsnd.co", @"unsplash.com", @"getrefe.tumblr.com"];
+    self.apiKey = @"fuiKNFp9vQFvjLNvx4sUwti4Yb5yGutBN4Xh10LXZhhRKjWlV4";
+    self.sitesCount = [self.sites count];
+    self.sitesDone = 0;
     
     [self setupPath];
     [self setupMenu];
@@ -61,48 +66,47 @@ static NSString * const BaseURLString = @"http://api.tumblr.com/v2/blog/";
 
 - (void)refresh:(id)sender
 {
-    [self getApiFeed];
+    self.statusItem.image = [NSImage imageNamed:@"hang-icon-loading"];
+    [self getApiFeeds];
 }
 
-- (void)getApiFeed
+- (void)getApiFeeds
 {
-    NSString *apiUrl = [NSString stringWithFormat:@"%@unsplash.com/posts?api_key=fuiKNFp9vQFvjLNvx4sUwti4Yb5yGutBN4Xh10LXZhhRKjWlV4&notes_info=false", BaseURLString];
-    NSURL *url = [NSURL URLWithString:apiUrl];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    operation.responseSerializer = [AFJSONResponseSerializer serializer];
-    
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+    for (NSString *site in self.sites)
+    {
+        NSString *apiUrl = [NSString stringWithFormat:@"%@/%@/posts?api_key=%@", BaseURLString, site, self.apiKey];
+        NSURL *url = [NSURL URLWithString:apiUrl];
+        NSURLRequest *request = [NSURLRequest requestWithURL:url];
         
-        // Request success
-        self.apiResponse = (NSDictionary *)responseObject;
-        NSLog(@"Successful request.");
+        AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+        operation.responseSerializer = [AFJSONResponseSerializer serializer];
         
-        [self saveDesktop];
+        [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+            
+            // Request success
+            
+            NSDictionary *response = responseObject;
+            self.apiResponse = response;
+            [self saveResponse];
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            // Request failed
+            NSLog(@"Failed.");
+        }];
         
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        // Request failed
-        NSLog(@"Failed.");
-    }];
-    
-    [operation start];
+        [operation start];
+    }
 }
 
-- (void)saveDesktop
+- (void)saveResponse
 {
-    NSUInteger postCount = [self.apiResponse[@"response"][@"posts"] count];
-    NSUInteger index = 0;
-    NSLog(@"postCount: %lu", (unsigned long)postCount);
-    
     for(id post in self.apiResponse[@"response"][@"posts"])
     {
-        
         for(id photo in post[@"photos"])
         {
             NSArray *altSizes = photo[@"alt_sizes"];
             NSString *bigSizeUrl = [altSizes objectAtIndex:0][@"url"];
-            NSLog(@"%@", bigSizeUrl);
+//            NSLog(@"%@", bigSizeUrl);
             NSString *fileName = [bigSizeUrl lastPathComponent];
             NSURL  *url = [NSURL URLWithString:bigSizeUrl];
             NSData *urlData = [NSData dataWithContentsOfURL:url];
@@ -110,15 +114,15 @@ static NSString * const BaseURLString = @"http://api.tumblr.com/v2/blog/";
             {
                 NSString *filePath = [NSString stringWithFormat:@"%@/%@", self.path, fileName];
                 [urlData writeToFile:filePath atomically:YES];
-                NSLog(@"%@", filePath);
+//                NSLog(@"%@", filePath);
             }
         }
-        
-        index++;
-        NSLog(@"Index: %lu", (unsigned long)index);
-        if (index == postCount) {
-            [self setDesktop];
-        }
+    }
+    
+    self.sitesDone++;
+    if (self.sitesDone == self.sitesCount) {
+        NSLog(@"All done, set desktop!");
+        [self setDesktop];
     }
 }
 
@@ -154,6 +158,8 @@ static NSString * const BaseURLString = @"http://api.tumblr.com/v2/blog/";
             [self notify];
         }
     }
+    
+    self.statusItem.image = [NSImage imageNamed:@"hang-icon"];
 }
 
 - (void)notify
