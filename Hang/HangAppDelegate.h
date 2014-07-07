@@ -12,5 +12,7 @@
 
 //@property (assign) IBOutlet NSWindow *window;
 @property (strong, nonatomic) NSStatusItem *statusItem;
+@property (strong, nonatomic) NSDictionary *apiResponse;
+@property (strong, nonatomic) NSString *path;
 
 @end

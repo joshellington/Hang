@@ -8,6 +8,8 @@
 
 #import "HangAppDelegate.h"
 
+static NSString * const BaseURLString = @"http://api.tumblr.com/v2/blog/";
+
 @implementation HangAppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
@@ -26,7 +28,25 @@
     // The image gets a blue background when the item is selected
     _statusItem.highlightMode = YES;
     
+    [self setupPath];
     [self setupMenu];
+}
+
+- (void)setupPath
+{
+    NSFileManager *filemgr = [NSFileManager defaultManager];
+    NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *dir = [NSString stringWithFormat:@"%@",@"Hang"];
+    self.path = [documentsDirectory stringByAppendingPathComponent:dir];
+    NSError *error;
+    
+    if ([filemgr fileExistsAtPath:self.path ] == YES){
+    }
+    else
+    {
+        NSLog (@"File not found");
+        [[NSFileManager defaultManager] createDirectoryAtPath:self.path withIntermediateDirectories:NO attributes:nil error:&error];
+    }
 }
 
 - (void)setupMenu
@@ -34,31 +54,93 @@
     NSMenu *menu = [[NSMenu alloc] init];
     [menu addItemWithTitle:@"Refresh" action:@selector(refresh:) keyEquivalent:@""];
     [menu addItem:[NSMenuItem separatorItem]]; // A thin grey line
-    [menu addItemWithTitle:@"Quit Hang" action:@selector(terminate:) keyEquivalent:@""];
+    [menu addItemWithTitle:@"Quit" action:@selector(terminate:) keyEquivalent:@""];
     
     _statusItem.menu = menu;
 }
 
 - (void)refresh:(id)sender
 {
-    [self setDesktop];
+    [self getApiFeed];
 }
 
-- (void)notify
+- (void)getApiFeed
 {
-    NSUserNotification *notification = [[NSUserNotification alloc] init];
-    [notification setTitle:@"Refreshed"];
-    [notification setInformativeText:@"Hung new wallpaper"];
-    [notification setDeliveryDate:[NSDate dateWithTimeInterval:1 sinceDate:[NSDate date]]];
-    [notification setSoundName:NSUserNotificationDefaultSoundName];
-    NSUserNotificationCenter *center = [NSUserNotificationCenter defaultUserNotificationCenter];
-    [center scheduleNotification:notification];
+    NSString *apiUrl = [NSString stringWithFormat:@"%@unsplash.com/posts?api_key=fuiKNFp9vQFvjLNvx4sUwti4Yb5yGutBN4Xh10LXZhhRKjWlV4&notes_info=false", BaseURLString];
+    NSURL *url = [NSURL URLWithString:apiUrl];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        // Request success
+        self.apiResponse = (NSDictionary *)responseObject;
+        NSLog(@"Successful request.");
+        
+        [self saveDesktop];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        // Request failed
+        NSLog(@"Failed.");
+    }];
+    
+    [operation start];
+}
+
+- (void)saveDesktop
+{
+    NSUInteger postCount = [self.apiResponse[@"response"][@"posts"] count];
+    NSUInteger index = 0;
+    NSLog(@"postCount: %lu", (unsigned long)postCount);
+    
+    for(id post in self.apiResponse[@"response"][@"posts"])
+    {
+        
+        for(id photo in post[@"photos"])
+        {
+            NSArray *altSizes = photo[@"alt_sizes"];
+            NSString *bigSizeUrl = [altSizes objectAtIndex:0][@"url"];
+            NSLog(@"%@", bigSizeUrl);
+            NSString *fileName = [bigSizeUrl lastPathComponent];
+            NSURL  *url = [NSURL URLWithString:bigSizeUrl];
+            NSData *urlData = [NSData dataWithContentsOfURL:url];
+            if (urlData)
+            {
+                NSString *filePath = [NSString stringWithFormat:@"%@/%@", self.path, fileName];
+                [urlData writeToFile:filePath atomically:YES];
+                NSLog(@"%@", filePath);
+            }
+        }
+        
+        index++;
+        NSLog(@"Index: %lu", (unsigned long)index);
+        if (index == postCount) {
+            [self setDesktop];
+        }
+    }
 }
 
 - (void)setDesktop
 {
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSArray *contents = [fileManager contentsOfDirectoryAtPath:self.path
+                                                        error:nil];
+
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"pathExtension == 'jpg'"];
+    NSArray *contentsArray = [contents filteredArrayUsingPredicate:predicate];
+    NSUInteger randomIndex = arc4random() % [contentsArray count];
+    NSString *randomImage = [contentsArray objectAtIndex:randomIndex];
+    NSString *filePath = [self.path stringByAppendingPathComponent:randomImage];
+    
+    //    NSLog(@"%@", randomImage);
+
+    // for (NSURL *fileURL in [contents filteredArrayUsingPredicate:predicate]) {
+    // }
+    
     NSWorkspace *sws = [NSWorkspace sharedWorkspace];
-    NSURL *image = [NSURL fileURLWithPath:@"/Library/Desktop Pictures/Zebras.jpg"];
+    NSURL *image = [NSURL fileURLWithPath:filePath];
     NSError *err = nil;
     for (NSScreen *screen in [NSScreen screens]) {
         NSDictionary *opt = [sws desktopImageOptionsForScreen:screen];
@@ -74,19 +156,15 @@
     }
 }
 
-- (void)saveWallpapers
+- (void)notify
 {
-    NSString *stringURL = @"https://s3.amazonaws.com/ooomf-com-files/wdXqHcTwSTmLuKOGz92L_Landscape.jpg";
-    NSURL  *url = [NSURL URLWithString:stringURL];
-    NSData *urlData = [NSData dataWithContentsOfURL:url];
-    if (urlData)
-    {
-        NSArray       *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString  *documentsDirectory = [paths objectAtIndex:0];
-        
-        NSString  *filePath = [NSString stringWithFormat:@"%@/%@", documentsDirectory,@"wdXqHcTwSTmLuKOGz92L_Landscape.jpg"];
-        [urlData writeToFile:filePath atomically:YES];
-    }
+    NSUserNotification *notification = [[NSUserNotification alloc] init];
+    [notification setTitle:@"Refreshed"];
+    [notification setInformativeText:@"Hung new wallpaper"];
+    [notification setDeliveryDate:[NSDate dateWithTimeInterval:1 sinceDate:[NSDate date]]];
+    [notification setSoundName:NSUserNotificationDefaultSoundName];
+    NSUserNotificationCenter *center = [NSUserNotificationCenter defaultUserNotificationCenter];
+    [center scheduleNotification:notification];
 }
 
 - (void)terminate
